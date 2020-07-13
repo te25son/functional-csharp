@@ -11,6 +11,12 @@ namespace Examples.Chapter01
 
     public class MutationShouldBeAvoided
     {
+        public static void Run()
+        {
+            WithListItBreaks();
+            WithIEnumerableItWorks();
+        }
+
         public static void WithListItBreaks()
         {
             var nums = Range(-10000, 20001).Reverse().ToList();
