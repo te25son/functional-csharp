@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using Dapper;
 
 namespace Examples.Chapter01.DbLogger
@@ -14,14 +13,14 @@ namespace Examples.Chapter01.DbLogger
 
         public void Log(LogMessage message) 
             => Connect(
-                    connString, 
-                    c => c.Execute("sp_create_log", message, commandType: CommandType.StoredProcedure)
-                );
+                connString, 
+                c => c.Execute("sp_create_log", message, commandType: CommandType.StoredProcedure)
+            );
 
         public IEnumerable<LogMessage> GetLogs(DateTime since)
             => Connect(
-                    connString, 
-                    c => c.Query<LogMessage>(@"SELECT * FROM [Logs] WHERE [TIMESTAMP] > @since", new { since = since })
-               );
+                connString, 
+                c => c.Query<LogMessage>(@"SELECT * FROM [Logs] WHERE [TIMESTAMP] > @since", new { since = since })
+           );
     }
 }
