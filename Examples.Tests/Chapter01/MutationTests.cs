@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Examples.Tests.Chapter01
 {
-    class Mutations
+    class MutationTests
     {
         [Test]
         public void NoInPlaceUpdates()
