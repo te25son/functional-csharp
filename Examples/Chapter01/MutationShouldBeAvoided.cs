@@ -18,25 +18,6 @@ namespace Examples.Chapter01
             WithIEnumerableItWorks();
         }
 
-        [Test]
-        public void NoInPlaceUpdates()
-        {
-            var original = new[] { 5, 7, 1 };
-            var sorted = original.OrderBy(x => x).ToList();
-
-            Assert.AreEqual(new[] { 5, 7, 1 }, original);
-            Assert.AreEqual(new[] { 1, 5, 7 }, sorted);
-        }
-
-        [Test]
-        public void InPlaceUpdates()
-        {
-            var original = new List<int> { 5, 7, 1 };
-            original.Sort();
-
-            Assert.AreEqual(new[] { 1, 5, 7 }, original);
-        }
-
         public static void WithListItBreaks()
         {
             var nums = Range(-10000, 20001).Reverse().ToList();
