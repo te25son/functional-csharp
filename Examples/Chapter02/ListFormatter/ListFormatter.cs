@@ -6,13 +6,13 @@ namespace Examples.Chapter02.ListFormatter
 {
     using static Console;
 
-    public static class ListFormatter
+    public class ListFormatter
     {
-        static int counter;
+        int counter;
 
-        static string PrependCounter(string s) => $"{++counter}. {s}";
+        string PrependCounter(string s) => $"{++counter}. {s}";
 
-        public static List<string> Format(List<string> list) =>
+        public  List<string> Format(List<string> list) =>
             list.Select(StringExtension.ToSentenceCase)
                 .Select(PrependCounter)
                 .ToList();
@@ -20,8 +20,9 @@ namespace Examples.Chapter02.ListFormatter
         public static void _main()
         {
             var shoppingList = new List<string> { "apples", "bread", "coffee", "milk" };
+            var formatter = new ListFormatter();
 
-            ListFormatter
+            formatter
                 .Format(shoppingList)
                 .ForEach(WriteLine);
         }

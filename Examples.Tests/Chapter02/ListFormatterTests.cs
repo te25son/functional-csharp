@@ -1,17 +1,34 @@
 ﻿using Examples.Chapter02.ListFormatter;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Examples.Tests.Chapter02
 {
-    public class ListFormatterTests
+    public class ListFormatterTests : TestFixture
     {
         [Test]
-        public void FormatWorksOnSingletonList()
+        public void FormatterWorksOnSingletonList()
         {
-            var input = new List<string> { "coffee beans" };
-            var output = ListFormatter.Format(input);
-            Assert.AreEqual("1. Coffee beans", output[0]);
+            Test(
+                () => new List<string> { "coffee beans" },
+                (formatter, singletonList) => formatter.Format(singletonList),
+                formattedList => Assert.AreEqual("1. Coffee beans", formattedList[0])
+            );
+        }
+
+        [Test]
+        public void FormatterWorksOnListWithMoreThanOneItem()
+        {
+            Test(
+                () => new List<string> { "coffee beans", "APPLES" },
+                (formatter, multiItemList) => formatter.Format(multiItemList),
+                formattedList =>
+                {
+                    Assert.AreEqual("1. Coffee beans", formattedList[0]);
+                    Assert.AreEqual("2. Apples", formattedList[1]);
+                }
+            );
         }
     }
 }
