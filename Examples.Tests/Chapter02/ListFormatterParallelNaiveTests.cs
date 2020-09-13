@@ -1,8 +1,6 @@
-﻿using Examples.Chapter02.ListFormatter;
+﻿using Examples.Chapter02.ListFormatter.Parallel.Naive;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 
 namespace Examples.Tests.Chapter02
 {
@@ -13,7 +11,7 @@ namespace Examples.Tests.Chapter02
         {
             Test(
                 arrange: () => (
-                    Formatter: new ListFormatterParallelNaive(),
+                    Formatter: new ListFormatter(),
                     Input: new[] { "coffee beans" }
                 ),
                 act: arrangeResult => arrangeResult.Formatter.Format(arrangeResult.Input),
@@ -29,7 +27,7 @@ namespace Examples.Tests.Chapter02
                 {
                     var inputSize = 10000;
                     return (
-                        Formatter: new ListFormatterParallelNaive(),
+                        Formatter: new ListFormatter(),
                         Input: Enumerable.Range(1, inputSize).Select(i => $"item-{i}"),
                         InputSize: inputSize
                     );

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 
-namespace Examples.Chapter02.ListFormatter
+namespace Examples.Chapter02.ListFormatter.Parallel.Naive
 {
     using static Console;
 
-    public class ListFormatterParallelNaive
+    public class ListFormatter
     {
         int counter;
 
@@ -28,7 +27,7 @@ namespace Examples.Chapter02.ListFormatter
             var size = 100000;
             var shoppingList = Enumerable.Range(1, size).Select(i => $"item{i}");
 
-            new ListFormatterParallelNaive()
+            new ListFormatter()
                 .Format(shoppingList)
                 .ForEach(WriteLine);
         }
