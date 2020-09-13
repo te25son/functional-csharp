@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Runtime.Serialization;
 
 namespace Examples.Chapter02.ListFormatter
 {
     using static Console;
 
-    class ListFormatterParallelNaive
+    public class ListFormatterParallelNaive
     {
         int counter;
 
         Numbered<T> ToNumberedValue<T>(T t) => new Numbered<T>(t, ++counter);
+
+        string Render(Numbered<string> s) => $"{s.Number}. {s.Value}";
 
         public List<string> Format(IEnumerable<string> list) =>
             list.AsParallel()
                 .Select(StringExtension.ToSentenceCase)
                 .Select(ToNumberedValue)
                 .OrderBy(n => n.Number)
-                .Select(s => s.ToString())
+                .Select(Render)
                 .ToList();
 
         public static void _main()

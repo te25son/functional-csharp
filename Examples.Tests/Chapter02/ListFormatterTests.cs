@@ -1,7 +1,7 @@
 ﻿using Examples.Chapter02.ListFormatter;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Examples.Tests.Chapter02
 {
@@ -11,9 +11,12 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnSingletonList()
         {
             Test(
-                () => new List<string> { "coffee beans" },
-                (formatter, singletonList) => formatter.Format(singletonList),
-                formattedList => Assert.AreEqual("1. Coffee beans", formattedList[0])
+                () => (
+                    Formatter: new ListFormatter(),
+                    Input: new List<string> { "coffee beans" }
+                ),
+                arrangeResult => arrangeResult.Formatter.Format(arrangeResult.Input),
+                (arrangeResult, actResult) => Assert.AreEqual("1. Coffee beans", actResult[0])
             );
         }
 
@@ -21,12 +24,15 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnListWithMoreThanOneItem()
         {
             Test(
-                () => new List<string> { "coffee beans", "APPLES" },
-                (formatter, multiItemList) => formatter.Format(multiItemList),
-                formattedList =>
+                () => (
+                    Formatter: new ListFormatter(),
+                    Input: new List<string> { "coffee beans", "APPLES" }
+                ),
+                arrangeResult => arrangeResult.Formatter.Format(arrangeResult.Input),
+                (arrangeResult, actResult) =>
                 {
-                    Assert.AreEqual("1. Coffee beans", formattedList[0]);
-                    Assert.AreEqual("2. Apples", formattedList[1]);
+                    Assert.AreEqual("1. Coffee beans", actResult[0]);
+                    Assert.AreEqual("2. Apples", actResult[1]);
                 }
             );
         }

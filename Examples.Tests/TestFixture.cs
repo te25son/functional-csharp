@@ -7,8 +7,11 @@ namespace Examples.Tests
     {
         protected void Test<TArrangeResult, TActResult>(
             Func<TArrangeResult> arrange,
-            Func<ListFormatter, TArrangeResult, TActResult> act,
-            Action<TActResult> assert
-        ) => assert(act(new ListFormatter(), arrange()));
+            Func<TArrangeResult, TActResult> act,
+            Action<TArrangeResult, TActResult> assert)
+        {
+            var arrangeResult = arrange();
+            assert(arrangeResult, act(arrangeResult));
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Examples.Chapter02.ListFormatter
         public T Value { get; set; }
 
         public override string ToString() =>
-            $"({Number}, {Value})";
+            $"({Number}. {Value})";
 
         public static Numbered<T> Create(T value, int number) =>
             new Numbered<T>(value, number);
