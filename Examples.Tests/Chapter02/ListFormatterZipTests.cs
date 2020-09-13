@@ -1,4 +1,5 @@
 ﻿using Examples.Chapter02.ListFormatter.Zip;
+using Examples.Chapter02.ListFormatter.Parallel.Zip;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,13 @@ namespace Examples.Tests.Chapter02
 {
     public class ListFormatterZipTests : TestFixture
     {
-        [Test]
-        public void FormatterForcesUpperCaseOfFirstLetter()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void FormatterForcesUpperCaseOfFirstLetter(bool useParallel)
         {
             Test(
                 arrange: () => new List<string> { "banana", "apple", "123" },
-                act: arrangeResult => ListFormatter.Format(arrangeResult),
+                act: arrangeResult => Format(arrangeResult, useParallel),
                 assert: (arrangeResult, actResult) =>
                 {
                     Assert.AreEqual("1. Banana", actResult[0]);
@@ -22,18 +24,20 @@ namespace Examples.Tests.Chapter02
             );
         }
 
-        [Test]
-        public void FormatterWorksOnSingletonList()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void FormatterWorksOnSingletonList(bool useParallel)
         {
             Test(
                 arrange: () => new List<string> { "coffee beans" },
-                act: arrangeResult => ListFormatter.Format(arrangeResult),
+                act: arrangeResult => Format(arrangeResult, useParallel),
                 (arrangeResult, actResult) => Assert.AreEqual("1. Coffee beans", actResult[0])
             );
         }
 
-        [Test]
-        public void FormatterWorksOnLargerLists()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void FormatterWorksOnLargerLists(bool useParallel)
         {
             Test(
                 arrange: () =>
@@ -44,9 +48,18 @@ namespace Examples.Tests.Chapter02
                         InputSize: inputSize
                     );
                 },
-                act: arrangeResult => ListFormatter.Format(arrangeResult.Input),
+                act: arrangeResult => Format(arrangeResult.Input, useParallel),
                 assert: (arrangeResult, actResult) => Assert.AreEqual("10000. Item-10000", actResult[arrangeResult.InputSize - 1])
             );
+        }
+
+        private List<string> Format(List<string> list, bool parallelize)
+        {
+            if (parallelize)
+            {
+                return Examples.Chapter02.ListFormatter.Parallel.Zip.ListFormatter.Format(list);
+            };
+            return Examples.Chapter02.ListFormatter.Zip.ListFormatter.Format(list);
         }
     }
 }
