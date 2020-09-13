@@ -10,6 +10,6 @@ namespace Examples.Chapter02.ListFormatter.Zip
             list
                 .Select(StringExtension.ToSentenceCase)
                 .Zip(Enumerable.Range(1, list.Count), (s, i) => $"{i}. {s}")
-                .ToList()
+                .ToList();
     }
 }

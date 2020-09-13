@@ -33,7 +33,7 @@ namespace Examples.Tests.Chapter02
                     );
                 },
                 act: arrangeResult => arrangeResult.Formatter.Format(arrangeResult.Input),
-                assert: (arrangeResult, actResult) => Assert.AreNotEqual("10000, item-10000", actResult[arrangeResult.InputSize - 1])
+                assert: (arrangeResult, actResult) => Assert.AreNotEqual("10000, Item-10000", actResult[arrangeResult.InputSize - 1])
             );
         }
     }
