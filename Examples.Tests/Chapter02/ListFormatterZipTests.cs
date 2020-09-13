@@ -31,7 +31,7 @@ namespace Examples.Tests.Chapter02
             Test(
                 arrange: () => new List<string> { "coffee beans" },
                 act: arrangeResult => Format(arrangeResult, useParallel),
-                (arrangeResult, actResult) => Assert.AreEqual("1. Coffee beans", actResult[0])
+                assert: (arrangeResult, actResult) => Assert.AreEqual("1. Coffee beans", actResult[0])
             );
         }
 
@@ -55,11 +55,9 @@ namespace Examples.Tests.Chapter02
 
         private List<string> Format(List<string> list, bool parallelize)
         {
-            if (parallelize)
-            {
-                return Examples.Chapter02.ListFormatter.Parallel.Zip.ListFormatter.Format(list);
-            };
-            return Examples.Chapter02.ListFormatter.Zip.ListFormatter.Format(list);
+            return parallelize
+                ? Examples.Chapter02.ListFormatter.Parallel.Zip.ListFormatter.Format(list)
+                : Examples.Chapter02.ListFormatter.Zip.ListFormatter.Format(list);
         }
     }
 }
