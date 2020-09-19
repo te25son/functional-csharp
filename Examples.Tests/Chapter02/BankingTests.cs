@@ -15,7 +15,7 @@ namespace Examples.Tests.Chapter02.Banking
         [TestCase(+1, true)]
         [TestCase(0, true)]
         [TestCase(-1, false)]
-        public void ValidationPasses_WhenTransferDateIsFuture(int offset, bool expectedResult)
+        public void DateValidationTest(int offset, bool expectedResult)
         {
             Test(
                 arrange: () => (

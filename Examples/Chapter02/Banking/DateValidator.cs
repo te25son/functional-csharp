@@ -13,7 +13,8 @@ namespace Examples.Chapter02.Banking
 
         public DateValidator(DateTime now)
         {
-            _nowUtc = now.ToUniversalTime();
+            // A lot more can be done here to make sure everything is actually UTC.
+            _nowUtc = now;
         }
 
         public bool IsValid(MakeTransfer transferCommand) =>
