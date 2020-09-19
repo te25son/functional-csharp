@@ -9,7 +9,14 @@ namespace Examples.Chapter02.Banking
     /// </summary>
     public sealed class DateValidator : IValidator<MakeTransfer>
     {
+        private readonly IDateTimeService _clock;
+
+        public DateValidator(IDateTimeService clock)
+        {
+            _clock = clock;
+        }
+
         public bool IsValid(MakeTransfer transferCommand) =>
-            DateTime.UtcNow.Date <= transferCommand.DateUtc.Date;
+            _clock.NowUtc.Date <= transferCommand.DateUtc.Date;
     }
 }
