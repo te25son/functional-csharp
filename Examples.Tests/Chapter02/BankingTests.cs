@@ -17,42 +17,18 @@ namespace Examples.Tests.Chapter02.Banking
             public DateTime NowUtc => presentDate;
         }
 
-        [Test]
-        public void ValidationPasses_WhenTransferDateIsFuture()
+        [TestCase(+1, true)]
+        [TestCase(0, true)]
+        [TestCase(-1, false)]
+        public void ValidationPasses_WhenTransferDateIsFuture(int offset, bool expectedResult)
         {
             Test(
                 arrange: () => (
-                    Transfer: new MakeTransfer { DateUtc = presentDate.AddYears(1) },
+                    Transfer: new MakeTransfer { DateUtc = presentDate.AddYears(offset) },
                     Validator: new DateValidator(new FakeDateTimeService())
                 ),
                 act: arrangeResult => arrangeResult.Validator.IsValid(arrangeResult.Transfer),
-                assert: (arrangeResult, actResult) => Assert.IsTrue(actResult)
-            );
-        }
-
-        [Test]
-        public void ValidationPasses_WhenTransferDateIsNow()
-        {
-            Test(
-                arrange: () => (
-                    Transfer: new MakeTransfer { DateUtc = presentDate },
-                    Validator: new DateValidator(new FakeDateTimeService())
-                ),
-                act: arrangeResult => arrangeResult.Validator.IsValid(arrangeResult.Transfer),
-                assert: (arrangeResult, actResult) => Assert.IsTrue(actResult)
-            );
-        }
-
-        [Test]
-        public void ValidationFails_WhenTransferDateIsPast()
-        {
-            Test(
-                arrange: () => (
-                    Transfer: new MakeTransfer { DateUtc = presentDate.AddYears(-1) },
-                    Validator: new DateValidator(new FakeDateTimeService())
-                ),
-                act: arrangeResult => arrangeResult.Validator.IsValid(arrangeResult.Transfer),
-                assert: (arrangeResult, actResult) => Assert.IsFalse(actResult)
+                assert: (arrangeResult, actResult) => Assert.AreEqual(expectedResult, actResult)
             );
         }
     }
