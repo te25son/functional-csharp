@@ -17,6 +17,6 @@ namespace Examples.Chapter02.Banking
         }
 
         public bool IsValid(MakeTransfer transferCommand) =>
-            _clock.NowUtc.Date <= transferCommand.DateUtc.Date;
+            _clock.NowUtc <= transferCommand.DateUtc;
     }
 }

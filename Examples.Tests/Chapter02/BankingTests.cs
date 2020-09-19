@@ -6,7 +6,7 @@ namespace Examples.Tests.Chapter02.Banking
 {
     public sealed class BankingTests : TestFixture
     {
-        static DateTime presentDate = new DateTime(2019, 12, 12, 0, 0, 0);
+        static DateTime presentDate = new DateTime(2019, 12, 12, 12, 0, 0);
 
         /// <summary>
         /// A fake DateTime is provided to make test "pure" in that they do not rely on getting
