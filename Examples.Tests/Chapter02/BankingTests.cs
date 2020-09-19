@@ -6,7 +6,7 @@ namespace Examples.Tests.Chapter02.Banking
 {
     public sealed class BankingTests : TestFixture
     {
-        static DateTime presentDate = new DateTime(2019, 12, 12);
+        static DateTime presentDate = new DateTime(2019, 12, 12, 0, 0, 0);
 
         /// <summary>
         /// A fake DateTime is provided to make test "pure" in that they do not rely on getting
@@ -24,11 +24,11 @@ namespace Examples.Tests.Chapter02.Banking
         {
             Test(
                 arrange: () => (
-                    Transfer: new MakeTransfer { DateUtc = presentDate.AddYears(offset) },
+                    Transfer: new MakeTransfer { DateUtc = presentDate.AddSeconds(offset) },
                     Validator: new DateValidator(new FakeDateTimeService())
                 ),
                 act: arrangeResult => arrangeResult.Validator.IsValid(arrangeResult.Transfer),
-                assert: (arrangeResult, actResult) => Assert.AreEqual(expectedResult, actResult)
+                assert: (arrangeResult, actResult) => Assert.AreEqual(expectedResult, actResult, $"The time is {arrangeResult.Transfer.DateUtc}")
             );
         }
     }
