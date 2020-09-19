@@ -26,5 +26,23 @@ namespace Examples.Tests.Chapter02.Banking
                 assert: (arrangeResult, actResult) => Assert.AreEqual(expectedResult, actResult, $"The time is {arrangeResult.Transfer.DateUtc}")
             );
         }
+
+        [TestCase("ABCDEFG1234567", true)]
+        [TestCase("XXXXXXXXXXXXXX", false)]
+        public void BicValidationTest(string bic, bool expectedResult)
+        {
+            Test(
+                arrange: () =>
+                {
+                    var validCodes = new[] { "ABCDEFG1234567" };
+                    return (
+                        Transfer: new MakeTransfer { Bic = bic },
+                        Validator: new BicValidator(() => validCodes)
+                    );
+                },
+                act: arrangeResult => arrangeResult.Validator.IsValid(arrangeResult.Transfer),
+                assert: (arrangeResult, actResult) => Assert.AreEqual(expectedResult, actResult)
+            );
+        }
     }
 }
