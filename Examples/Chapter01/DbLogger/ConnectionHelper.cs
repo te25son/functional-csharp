@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static Functional.ActionExtensions;
+using static Functional.ExampleExtensions;
 
 namespace Examples.Chapter01.DbLogger
 {
