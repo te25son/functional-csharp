@@ -13,10 +13,11 @@ namespace Examples
                 ["MutationsShouldBeAvoided"] = Chapter01.MutationShouldBeAvoided.Run,
                 ["HOF"] = Chapter01.HOF.Run,
                 ["FunctionFactories"] = Chapter01.FunctionFactories.Run,
-                ["LF_ParallelNaive"] = Chapter02.ListFormatter.Parallel.Naive.ListFormatter._main
+                ["LF_ParallelNaive"] = Chapter02.ListFormatter.Parallel.Naive.ListFormatter._main,
+                ["OptionPlay"] = Chapter03.OptionPlay.Run
             };
 
-            foreach (var example in examples.Where(e => e.Key.Equals("LF_ParallelNaive")))
+            foreach (var example in examples.Where(e => e.Key.Equals("OptionPlay")))
             {
                 example.Value();
             }
