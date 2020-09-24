@@ -1,14 +1,21 @@
-﻿using System;
+﻿using Functional;
+using Functional.Option;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Examples.Chapter03
 {
+    using static F;
+
     public enum Risk { Low, Medium, High}
 
-    public class Age
+    public struct Age
     {
         private int Value { get; }
+
+        public static Option<Age> Of(int age) =>
+            IsValid(age) ? Some(new Age(age)) : None;
 
         public static bool operator < (Age l, Age r) =>
             l.Value < r.Value;
@@ -20,7 +27,7 @@ namespace Examples.Chapter03
         public static bool operator > (Age l, int r) =>
             l > new Age(r);
 
-        public Age(int value)
+        private Age(int value)
         {
             if (!IsValid(value))
                 throw new ArgumentException($"{value} is not a valid age.");
