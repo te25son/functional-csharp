@@ -11,10 +11,11 @@ namespace Exercises
             var exercises = new Dictionary<string, Action>
             {
                 ["BmiCalc"] = Chapter02.BmiCalculator.BmiCalculator.Run,
-                ["EnumExr"] = Chapter03.EnumExercise.Run
+                ["EnumExr"] = Chapter03.EnumExercise.Run,
+                ["Lookup"] = Chapter03.LookupExercise.Run
             };
 
-            foreach (var exercise in exercises.Where(e => e.Key.Equals("EnumExr")))
+            foreach (var exercise in exercises.Where(e => e.Key.Equals("Lookup")))
             {
                 exercise.Value();
             }
