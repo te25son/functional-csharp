@@ -11,7 +11,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnSingletonList()
         {
             Test(
-                () => (
+                _ => (
                     Formatter: new ListFormatter(),
                     Input: new List<string> { "coffee beans" }
                 ),
@@ -24,7 +24,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnListWithMoreThanOneItem()
         {
             Test(
-                () => (
+                _ => (
                     Formatter: new ListFormatter(),
                     Input: new List<string> { "coffee beans", "APPLES" }
                 ),

@@ -13,7 +13,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterForcesUpperCaseOfFirstLetter(bool useParallel)
         {
             Test(
-                arrange: () => new List<string> { "banana", "apple", "123" },
+                arrange: _ => new List<string> { "banana", "apple", "123" },
                 act: arrangeResult => Format(arrangeResult, useParallel),
                 assert: (arrangeResult, actResult) =>
                 {
@@ -29,7 +29,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnSingletonList(bool useParallel)
         {
             Test(
-                arrange: () => new List<string> { "coffee beans" },
+                arrange: _ => new List<string> { "coffee beans" },
                 act: arrangeResult => Format(arrangeResult, useParallel),
                 assert: (arrangeResult, actResult) => Assert.AreEqual("1. Coffee beans", actResult[0])
             );
@@ -40,7 +40,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnLargerLists(bool useParallel)
         {
             Test(
-                arrange: () =>
+                arrange: _ =>
                 {
                     var inputSize = 10000;
                     return (

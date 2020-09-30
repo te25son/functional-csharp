@@ -12,7 +12,7 @@ namespace Examples.Tests.Chapter03
         public void SubscriberSendsCorrect_WhenNameIsGiven()
         {
             Test(
-                arrange: () =>
+                arrange: _ =>
                 {
                     var subscriberName = "John";
 
@@ -30,7 +30,7 @@ namespace Examples.Tests.Chapter03
         public void SubscriberSendsCorrectGreeting_WhenNameIsNotGiven()
         {
             Test(
-                arrange: () => new Subscriber { Name = null },
+                arrange: _ => new Subscriber { Name = null },
                 act: arrangeResult => SubscriberComponent.GreetingFor(arrangeResult),
                 assert: (arrangeResult, actResult) => Assert.AreEqual($"Dear subscriber", actResult)
             );

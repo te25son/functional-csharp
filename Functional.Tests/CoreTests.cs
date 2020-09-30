@@ -13,7 +13,7 @@ namespace Functional.Tests.Core
         public void MapWithSomeReturnsCorrectType(string name)
         {
             Test(
-                arrange: () => Some(name),
+                arrange: _ => Some(name),
                 act: arrangeResult =>
                 {
                     Func<string, string> greet = greeteeName => $"Hello, {greeteeName}";
@@ -30,7 +30,7 @@ namespace Functional.Tests.Core
         public void MapWithNoneReturnsCorrectType()
         {
             Test(
-                arrange: () => (Option<string>)None,
+                arrange: _ => (Option<string>)None,
                 act: arrangeResult =>
                 {
                     Func<string, string> greet = greeteeName => $"Hello, {greeteeName}";

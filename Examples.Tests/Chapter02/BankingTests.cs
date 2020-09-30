@@ -18,7 +18,7 @@ namespace Examples.Tests.Chapter02.Banking
         public void DateValidationTest(int offset, bool expectedResult)
         {
             Test(
-                arrange: () => (
+                arrange: _ => (
                     Transfer: new MakeTransfer { DateUtc = presentDate.AddSeconds(offset) },
                     Validator: new DateValidator(presentDate)
                 ),
@@ -32,7 +32,7 @@ namespace Examples.Tests.Chapter02.Banking
         public void BicValidationTest(string bic, bool expectedResult)
         {
             Test(
-                arrange: () =>
+                arrange: _ =>
                 {
                     var validCodes = new[] { "ABCDEFG1234567" };
                     return (

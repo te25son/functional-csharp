@@ -10,7 +10,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterWorksOnSingletonList()
         {
             Test(
-                arrange: () => (
+                arrange: _ => (
                     Formatter: new ListFormatter(),
                     Input: new[] { "coffee beans" }
                 ),
@@ -23,7 +23,7 @@ namespace Examples.Tests.Chapter02
         public void FormatterDoesNotWorkOnLongList()
         {
             Test(
-                arrange: () =>
+                arrange: _ =>
                 {
                     var inputSize = 10000;
                     return (
