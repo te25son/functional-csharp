@@ -22,5 +22,8 @@ namespace Functional
 
         public static IEnumerable<Unit> ForEach<T>(this IEnumerable<T> ts, Action<T> action) =>
             ts.Map(action.ToFunc()).ToImmutableList();
+
+        public static Option<Unit> ForEach<T>(this Option<T> t, Action<T> action) =>
+            t.Map(action.ToFunc());
     }
 }

@@ -16,10 +16,11 @@ namespace Examples
                 ["LF_ParallelNaive"] = Chapter02.ListFormatter.Parallel.Naive.ListFormatter._main,
                 ["OptionPlay"] = Chapter03.OptionPlay.Run,
                 ["Map"] = Chapter04.Map.Run,
-                ["ApplePie"] = Chapter04.ApplePieExample.Run
+                ["ApplePie"] = Chapter04.ApplePieExample.Run,
+                ["ForEachEx"] = Chapter04.ForEachExample.Run
             };
 
-            foreach (var example in examples.Where(e => e.Key.Equals("ApplePie")))
+            foreach (var example in examples.Where(e => e.Key.Equals("ForEachEx")))
             {
                 example.Value();
             }
