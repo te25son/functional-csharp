@@ -2,7 +2,7 @@
 
 namespace Functional
 {
-    using Unit = System.ValueTuple;
+    using Unit = ValueTuple;
     using static F;
 
     public static partial class F

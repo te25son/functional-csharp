@@ -1,12 +1,11 @@
-﻿using Functional.Option;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.Immutable;
 
 namespace Functional
 {
     using static F;
+    using Unit = ValueTuple;
 
     public static class Core
     {
@@ -20,5 +19,8 @@ namespace Functional
             optT.Match(
                 () => None,
                 t => Some(func(t)));
+
+        public static IEnumerable<Unit> ForEach<T>(this IEnumerable<T> ts, Action<T> action) =>
+            ts.Map(action.ToFunc()).ToImmutableList();
     }
 }
