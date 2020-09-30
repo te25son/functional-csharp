@@ -15,10 +15,11 @@ namespace Examples
                 ["FunctionFactories"] = Chapter01.FunctionFactories.Run,
                 ["LF_ParallelNaive"] = Chapter02.ListFormatter.Parallel.Naive.ListFormatter._main,
                 ["OptionPlay"] = Chapter03.OptionPlay.Run,
-                ["Map"] = Chapter04.Map.Run
+                ["Map"] = Chapter04.Map.Run,
+                ["ApplePie"] = Chapter04.ApplePieExample.Run
             };
 
-            foreach (var example in examples.Where(e => e.Key.Equals("Map")))
+            foreach (var example in examples.Where(e => e.Key.Equals("ApplePie")))
             {
                 example.Value();
             }
