@@ -16,5 +16,10 @@ namespace Examples.Tests
             var arrangeResult = arrange(Unit());
             assert(arrangeResult, act(arrangeResult));
         }
+
+        protected string OptionToString<T>(Option<T> optT) =>
+            optT.Match(
+                () => "None",
+                (t) => "Some");
     }
 }
