@@ -30,5 +30,12 @@ namespace Functional
             optT.Match(
                 () => None,
                 (t) => func(t));
+
+        public static IEnumerable<R> Bind<T, R>(this IEnumerable<T> ts, Func<T, IEnumerable<R>> func)
+        {
+            foreach (T t in ts)
+                foreach (R r in func(t))
+                    yield return r;
+        }
     }
 }
