@@ -37,5 +37,10 @@ namespace Functional
                 foreach (R r in func(t))
                     yield return r;
         }
+
+        public static Option<T> Where<T>(this Option<T> optT, Func<T, bool> pred) =>
+            optT.Match(
+                () => None,
+                (t) => pred(t) ? optT : None);
     }
 }
