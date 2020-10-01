@@ -25,5 +25,10 @@ namespace Functional
 
         public static Option<Unit> ForEach<T>(this Option<T> t, Action<T> action) =>
             t.Map(action.ToFunc());
+
+        public static Option<R> Bind<T, R>(this Option<T> optT, Func<T, Option<R>> func) =>
+            optT.Match(
+                () => None,
+                (t) => func(t));
     }
 }
