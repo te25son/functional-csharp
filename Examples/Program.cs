@@ -17,10 +17,11 @@ namespace Examples
                 ["OptionPlay"] = Chapter03.OptionPlay.Run,
                 ["Map"] = Chapter04.Map.Run,
                 ["ApplePie"] = Chapter04.ApplePieExample.Run,
-                ["ForEachEx"] = Chapter04.ForEachExample.Run
+                ["ForEachEx"] = Chapter04.ForEachExample.Run,
+                ["Pets"] = Chapter04.NeighborhoodPets.Run
             };
 
-            foreach (var example in examples.Where(e => e.Key.Equals("ForEachEx")))
+            foreach (var example in examples.Where(e => e.Key.Equals("Pets")))
             {
                 example.Value();
             }

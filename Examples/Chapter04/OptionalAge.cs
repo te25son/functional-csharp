@@ -8,7 +8,7 @@ namespace Examples.Chapter04
 
     public static class AskForValidAgeAndPrintFlatteringMessage
     {
-        public static void Main() =>
+        public static void _main() =>
             WriteLine($"Only {ReadAge()}!? That's young!");
 
         // Recursively calls itself while parsing the inputed age fails.
