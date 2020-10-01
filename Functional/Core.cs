@@ -7,21 +7,12 @@ namespace Functional
     using static F;
     using Unit = ValueTuple;
 
-    public static class Core
+    public static class CoreOption
     {
-        public static IEnumerable<R> Map<T, R>(this IEnumerable<T> ts, Func<T, R> func)
-        {
-            foreach (var t in ts)
-                yield return func(t);
-        }
-
         public static Option<R> Map<T, R>(this Option<T> optT, Func<T, R> func) =>
             optT.Match(
                 () => None,
                 t => Some(func(t)));
-
-        public static IEnumerable<Unit> ForEach<T>(this IEnumerable<T> ts, Action<T> action) =>
-            ts.Map(action.ToFunc()).ToImmutableList();
 
         public static Option<Unit> ForEach<T>(this Option<T> t, Action<T> action) =>
             t.Map(action.ToFunc());
@@ -31,6 +22,23 @@ namespace Functional
                 () => None,
                 (t) => func(t));
 
+        public static Option<T> Where<T>(this Option<T> optT, Func<T, bool> pred) =>
+            optT.Match(
+                () => None,
+                (t) => pred(t) ? optT : None);
+    }
+
+    public static class CoreEnumerable
+    {
+        public static IEnumerable<R> Map<T, R>(this IEnumerable<T> ts, Func<T, R> func)
+        {
+            foreach (var t in ts)
+                yield return func(t);
+        }
+
+        public static IEnumerable<Unit> ForEach<T>(this IEnumerable<T> ts, Action<T> action) =>
+            ts.Map(action.ToFunc()).ToImmutableList();
+
         public static IEnumerable<R> Bind<T, R>(this IEnumerable<T> ts, Func<T, IEnumerable<R>> func)
         {
             foreach (T t in ts)
@@ -38,9 +46,5 @@ namespace Functional
                     yield return r;
         }
 
-        public static Option<T> Where<T>(this Option<T> optT, Func<T, bool> pred) =>
-            optT.Match(
-                () => None,
-                (t) => pred(t) ? optT : None);
     }
 }
