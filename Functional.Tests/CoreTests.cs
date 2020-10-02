@@ -21,7 +21,7 @@ namespace Functional.Tests.Core
         }
 
         private Option<T> CreateSimpleOption<T>(T t) =>
-            t == null ? Some(t) : None;
+            t != null ? Some(t) : None;
 
         private string Greet(string greeteeName) => $"Hello, {greeteeName}";
     }
