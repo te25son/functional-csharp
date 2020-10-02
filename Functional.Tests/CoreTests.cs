@@ -14,12 +14,15 @@ namespace Functional.Tests.Core
         public void MapReturnsCorrectType(string name, string expectedOutput)
         {
             Test(
-                arrange: _ => name == null ? None : Some(name),
+                arrange: _ => CreateSimpleOption(name),
                 act: arrangeResult => arrangeResult.Map(Greet),
                 assert: (arrangeResult, actResult) => Assert.AreEqual(expectedOutput, actResult.ToString())
             );
         }
 
-        public string Greet(string greeteeName) => $"Hello, {greeteeName}";
+        private Option<T> CreateSimpleOption<T>(T t) =>
+            t == null ? Some(t) : None;
+
+        private string Greet(string greeteeName) => $"Hello, {greeteeName}";
     }
 }
