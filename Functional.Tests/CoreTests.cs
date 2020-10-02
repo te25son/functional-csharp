@@ -9,38 +9,17 @@ namespace Functional.Tests.Core
 
     public class CoreTests : TestFixture
     {
-        [TestCase("John")]
-        public void MapWithSomeReturnsCorrectType(string name)
+        [TestCase("John", "Some")]
+        [TestCase(null, "None")]
+        public void MapReturnsCorrectType(string name, string expectedOutput)
         {
             Test(
-                arrange: _ => Some(name),
-                act: arrangeResult =>
-                {
-                    Func<string, string> greet = greeteeName => $"Hello, {greeteeName}";
-                    return arrangeResult.Map(greet);
-                },
-                assert: (arrangeResult, actResult) =>
-                {
-                    Assert.AreEqual(typeof(Option<string>), actResult.GetType());
-                }
+                arrange: _ => name == null ? None : Some(name),
+                act: arrangeResult => arrangeResult.Map(Greet),
+                assert: (arrangeResult, actResult) => Assert.AreEqual(expectedOutput, actResult.ToString())
             );
         }
 
-        [Test]
-        public void MapWithNoneReturnsCorrectType()
-        {
-            Test(
-                arrange: _ => (Option<string>)None,
-                act: arrangeResult =>
-                {
-                    Func<string, string> greet = greeteeName => $"Hello, {greeteeName}";
-                    return arrangeResult.Map(greet);
-                },
-                assert: (arrangeResult, actResult) =>
-                {
-                    Assert.AreEqual(typeof(Option<string>), actResult.GetType());
-                }
-            );
-        }
+        public string Greet(string greeteeName) => $"Hello, {greeteeName}";
     }
 }
