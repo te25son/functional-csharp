@@ -46,5 +46,7 @@ namespace Functional
                     yield return r;
         }
 
+        public static IEnumerable<T> List<T>(params T[] items) =>
+            items.ToImmutableList();
     }
 }
