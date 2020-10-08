@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Examples.Chapter03;
 using Functional;
 
@@ -26,5 +27,20 @@ namespace Examples.Chapter04
             WriteLine(prompt);
             return ReadLine();
         }
+    }
+
+    public static class SurveryOptionalAge
+    {
+        static IEnumerable<Subject> Population => new[]
+        {
+            new Subject { Age = Age.Of(33) },
+            new Subject { },
+            new Subject { Age = Age.Of(37) }
+        };
+    }
+
+    class Subject
+    {
+        public Option<Age> Age { get; set; }
     }
 }
