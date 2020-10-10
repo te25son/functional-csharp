@@ -39,6 +39,11 @@ namespace Functional
         public R Match<R>(Func<R> none, Func<T, R> some) =>
             _isSome ? some(_value) : none();
 
+        public IEnumerable<T> AsEnumerable()
+        {
+            if (_isSome) yield return _value;
+        }
+
         public override string ToString() =>
             _isSome ? "Some" : "None";
     }
