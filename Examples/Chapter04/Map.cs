@@ -8,6 +8,17 @@ namespace Examples.Chapter04
 
     public static class Map
     {
+        public static void ListMap()
+        {
+            Func<int, int> plus3 = x => x + 3;
+
+            var list = new[] { 1, 2, 3 };
+            var listPlus3 = list.Map(plus3);
+
+            list.ForEach(WriteLine);
+            listPlus3.ForEach(WriteLine);
+        }
+
         public static void Run()
         {
             Func<string, string> greet = name => $"Hello, {name}";
