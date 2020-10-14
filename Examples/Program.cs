@@ -18,10 +18,11 @@ namespace Examples
                 ["Map"] = Chapter04.Map.Run,
                 ["ApplePie"] = Chapter04.ApplePieExample.Run,
                 ["ForEachEx"] = Chapter04.ForEachExample.Run,
-                ["Pets"] = Chapter04.NeighborhoodPets.Run
+                ["Pets"] = Chapter04.NeighborhoodPets.Run,
+                ["FunctorsMonads"] = Chapter04.FunctorsAndMonads.Run
             };
 
-            foreach (var example in examples.Where(e => e.Key.Equals("Pets")))
+            foreach (var example in examples.Where(e => e.Key.Equals("FunctorsMonads")))
             {
                 example.Value();
             }
