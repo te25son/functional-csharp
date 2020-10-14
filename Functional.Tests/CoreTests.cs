@@ -2,6 +2,7 @@ using Examples.Tests;
 using Functional.Option;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Functional.Tests.Core
 {

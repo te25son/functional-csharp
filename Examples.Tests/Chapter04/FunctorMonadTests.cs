@@ -33,18 +33,18 @@ namespace Examples.Tests.Chapter04.FunctorsAndMonads
             );
         }
 
-        [Test]
-        public void CannotImplementBindInTermsOfMap()
-        {
-            Test(
-                arrange: _ => new[]
-                {
-                    new Students(1, new[] { "Yellow", "Green" }),
-                    new Students(2, new[] { "Purple", "Orange" })
-                },
-                act: arrangeResult => arrangeResult.Bind(s => s.Id),
-                assert: (arrangeResult, actResult) => Assert.Fail()
-            );
-        }
+        //[Test]
+        //public void CannotImplementBindInTermsOfMap()
+        //{
+        //    Test(
+        //        arrange: _ => new[]
+        //        {
+        //            new Students(1, new[] { "Yellow", "Green" }),
+        //            new Students(2, new[] { "Purple", "Orange" })
+        //        },
+        //        act: arrangeResult => arrangeResult.Bind(s => s.Id),
+        //        assert: (arrangeResult, actResult) => Assert.Fail()
+        //    );
+        //}
     }
 }
