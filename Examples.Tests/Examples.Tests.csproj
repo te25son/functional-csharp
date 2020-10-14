@@ -15,8 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Examples\Examples.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Chapter04\" />
-  </ItemGroup>
 </Project>
