@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace Functional
 {
@@ -45,6 +46,12 @@ namespace Functional
                 foreach (R r in func(t))
                     yield return r;
         }
+
+        public static IEnumerable<R> Bind<T, R>(this IEnumerable<T> ts, Func<T, Option<R>> func) =>
+            ts.Bind(t => func(t)).AsEnumerable();
+
+        public static IEnumerable<R> Bind<T, R>(this Option<T> opt, Func<T, IEnumerable<R>> func) =>
+            opt.AsEnumerable().Bind(func);
 
         public static IEnumerable<T> List<T>(params T[] items) =>
             items.ToImmutableList();
