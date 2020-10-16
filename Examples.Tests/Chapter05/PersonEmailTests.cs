@@ -11,7 +11,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba")]
         [TestCase("123", "456", ExpectedResult = "1245")]
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$")]
-        public string CanCreateAbbreviation(string firstName, string lastName) =>
+        public string CanAbbreviateName(string firstName, string lastName) =>
             Test(
                 arrange: _ => new Person(firstName, lastName),
                 act: arrangedData => PersonComponent.AbbreviateName(arrangedData));
