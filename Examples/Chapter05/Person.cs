@@ -15,17 +15,17 @@ namespace Examples.Chapter05
         }
     }
 
-    public class PersonComponent
+    public static class PersonComponent
     {
-        public Func<Person, string> EmailFor = p => AppendDomain(AbbreviateName(p));
+        public static Func<Person, string> EmailFor = p => AppendDomain(AbbreviateName(p));
 
-        static string AbbreviateName(Person person) =>
+        public static string AbbreviateName(Person person) =>
             Abbreviate(person.FirstName) + Abbreviate(person.LastName);
 
-        static string AppendDomain(string localPart) =>
+        public static string AppendDomain(string localPart) =>
             $"{localPart}@company.com";
 
-        static string Abbreviate(string s) =>
+        public static string Abbreviate(string s) =>
             s.Substring(0, 2).ToLower();
     }
 }
