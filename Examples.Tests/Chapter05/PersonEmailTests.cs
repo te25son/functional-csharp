@@ -8,14 +8,12 @@ namespace Examples.Tests.Chapter05
 {
     public sealed class PersonEmailTests : TestFixture
     {
-        [Test]
-        public void CanCreateAbbreviation()
-        {
+        [TestCase("Bilbo", "Baggins", ExpectedResult = "biba")]
+        [TestCase("123", "456", ExpectedResult = "1245")]
+        [TestCase("'!><", "#$%^", ExpectedResult = "'!#$")]
+        public string CanCreateAbbreviation(string firstName, string lastName) =>
             Test(
-                arrange: _ => new Person("Bilbo", "Baggins"),
-                act: arrangedData => PersonComponent.AbbreviateName(arrangedData),
-                assert: actData => Assert.AreEqual("biba", actData)
-            );
-        }
+                arrange: _ => new Person(firstName, lastName),
+                act: arrangedData => PersonComponent.AbbreviateName(arrangedData));
     }
 }
