@@ -14,7 +14,7 @@ namespace Examples.Tests.Chapter05
         public string CanAbbreviateName(string firstName, string lastName) =>
             Test(
                 arrange: _ => new Person(firstName, lastName),
-                act: arrangedData => PersonComponent.AbbreviateName(arrangedData));
+                act: arrangedData => PersonComponent_FuncComp.AbbreviateName(arrangedData));
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba@company.com")]
         [TestCase("123", "456", ExpectedResult = "1245@company.com")]
@@ -22,6 +22,6 @@ namespace Examples.Tests.Chapter05
         public string CanGetEmailFor(string firstName, string lastName) =>
             Test(
                 arrange: _ => new Person(firstName, lastName),
-                act: arrangedData => PersonComponent.EmailFor(arrangedData));
+                act: arrangedData => PersonComponent_FuncComp.EmailFor(arrangedData));
     }
 }

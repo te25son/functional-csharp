@@ -15,7 +15,10 @@ namespace Examples.Chapter05
         }
     }
 
-    public static class PersonComponent
+    /// <summary>
+    /// Example using functional composition
+    /// </summary>
+    public static class PersonComponent_FuncComp
     {
         public static Func<Person, string> EmailFor = p => AppendDomain(AbbreviateName(p));
 
@@ -23,6 +26,22 @@ namespace Examples.Chapter05
             Abbreviate(person.FirstName) + Abbreviate(person.LastName);
 
         public static string AppendDomain(string localPart) =>
+            $"{localPart}@company.com";
+
+        public static string Abbreviate(string s) =>
+            s.Substring(0, 2).ToLower();
+    }
+
+
+    /// <summary>
+    /// Example using method chaining
+    /// </summary>
+    public static class PersonComponent_MethodChain
+    {
+        public static string AbbreviateName(this Person person) =>
+            Abbreviate(person.FirstName) + Abbreviate(person.LastName);
+
+        public static string AppendDomain(this string localPart) =>
             $"{localPart}@company.com";
 
         public static string Abbreviate(string s) =>
