@@ -45,7 +45,7 @@ namespace Functional
         }
 
         public override string ToString() =>
-            _isSome ? "Some" : "None";
+            _isSome ? _value.ToString() : "None";
     }
 
     namespace Option

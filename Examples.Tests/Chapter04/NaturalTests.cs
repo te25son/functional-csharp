@@ -5,8 +5,8 @@ namespace Examples.Tests.Chapter04.Naturals
 {
     public class NaturalTests : TestFixture
     {
-        [TestCase("2", "Some")]
-        [TestCase("0", "Some")]
+        [TestCase("2", "2")]
+        [TestCase("0", "0")]
         [TestCase("-2", "None")]
         [TestCase("Hello", "None")]
         public void NaturalTest(string value, string expectedResult)

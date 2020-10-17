@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Examples.Chapter05
 {
@@ -7,6 +9,8 @@ namespace Examples.Chapter05
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public decimal Earnings { get; set; }
 
         public Person(string firstName, string lastName)
         {
@@ -30,6 +34,13 @@ namespace Examples.Chapter05
 
         public static string Abbreviate(string s) =>
             s.Substring(0, 2).ToLower();
+
+        public static decimal AverageEarningsOfRichestQuartile(List<Person> population) =>
+            population
+                .OrderByDescending(p => p.Earnings)
+                .Take(population.Count() / 4)
+                .Select(p => p.Earnings)
+                .Average();
     }
 
 

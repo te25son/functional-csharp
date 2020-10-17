@@ -10,7 +10,7 @@ namespace Functional.Tests.Core
 
     public class CoreTests : TestFixture
     {
-        [TestCase("John", "Some")]
+        [TestCase("John", "Hello, John")]
         [TestCase(null, "None")]
         public void MapReturnsCorrectType(string name, string expectedOutput)
         {
