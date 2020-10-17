@@ -12,10 +12,8 @@ namespace Examples.Chapter05
 
         public decimal Earnings { get; set; }
 
-        public Person(string firstName, string lastName)
+        public Person()
         {
-            FirstName = firstName;
-            LastName = lastName;
         }
     }
 

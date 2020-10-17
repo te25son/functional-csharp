@@ -13,12 +13,7 @@ namespace Examples.Tests.Chapter05
         public decimal AverageEarningsOfRichestQuartileTest() =>
             Test(
                 arrange: _ => Range(1, 8)
-                    .Select(i =>
-                    {
-                        var person = new Person("Abby", "Brook");
-                        person.Earnings = i * 10000;
-                        return person;
-                    })
+                    .Select(i => new Person { Earnings = i * 10000 })
                     .ToList(),
                 act: arrangedData => AverageEarningsOfRichestQuartile(arrangedData));
     }

@@ -15,7 +15,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$")]
         public string CanAbbreviateName_UsingFunctionComposition(string firstName, string lastName) =>
             Test(
-                arrange: _ => new Person(firstName, lastName),
+                arrange: _ => new Person { FirstName = firstName, LastName = lastName },
                 act: arrangedData => AbbreviateName(arrangedData));
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba@company.com")]
@@ -23,7 +23,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$@company.com")]
         public string CanGetEmailFor_UsingFunctionComposition(string firstName, string lastName) =>
             Test(
-                arrange: _ => new Person(firstName, lastName),
+                arrange: _ => new Person { FirstName = firstName, LastName = lastName },
                 act: arrangedData => EmailFor(arrangedData));
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba")]
@@ -31,7 +31,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$")]
         public string CanAbbreviateName_UsingMethodChaining(string firstName, string lastName) =>
             Test(
-                arrange: _ => new Person(firstName, lastName),
+                arrange: _ => new Person { FirstName = firstName, LastName = lastName },
                 act: arrangedData => arrangedData.AbbreviateName());
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba@company.com")]
@@ -39,7 +39,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$@company.com")]
         public string CanGetEmailFor_UsingMethodChaining(string firstName, string lastName) =>
             Test(
-                arrange: _ => new Person(firstName, lastName),
+                arrange: _ => new Person { FirstName = firstName, LastName = lastName },
                 act: arrangedData => arrangedData.AbbreviateName().AppendDomain());
     }
 
@@ -50,7 +50,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$")]
         public string CanAbbreviateName_UsingFunctionComposition(string firstName, string lastName) =>
             Test(
-                arrange: _ => Some(new Person(firstName, lastName)),
+                arrange: _ => Some(new Person { FirstName = firstName, LastName = lastName }),
                 act: arrangedData => arrangedData.Map(AbbreviateName)).ToString();
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba@company.com")]
@@ -58,7 +58,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$@company.com")]
         public string CanGetEmailFor_UsingFunctionComposition(string firstName, string lastName) =>
             Test(
-                arrange: _ => Some(new Person(firstName, lastName)),
+                arrange: _ => Some(new Person { FirstName = firstName, LastName = lastName }),
                 act: arrangedData => arrangedData.Map(EmailFor)).ToString();
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba")]
@@ -66,7 +66,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$")]
         public string CanAbbreviateName_UsingMethodChaining(string firstName, string lastName) =>
             Test(
-                arrange: _ => Some(new Person(firstName, lastName)),
+                arrange: _ => Some(new Person { FirstName = firstName, LastName = lastName }),
                 act: arrangedData => arrangedData.Map(AbbreviateName).ToString());
 
         [TestCase("Bilbo", "Baggins", ExpectedResult = "biba@company.com")]
@@ -74,7 +74,7 @@ namespace Examples.Tests.Chapter05
         [TestCase("'!><", "#$%^", ExpectedResult = "'!#$@company.com")]
         public string CanGetEmailFor_UsingMethodChaining(string firstName, string lastName) =>
             Test(
-                arrange: _ => Some(new Person(firstName, lastName)),
+                arrange: _ => Some(new Person { FirstName = firstName, LastName = lastName }),
                 act: arrangedData => arrangedData.Map(AbbreviateName).Map(AppendDomain).ToString());
     }
 }
