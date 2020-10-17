@@ -34,13 +34,6 @@ namespace Examples.Chapter05
 
         public static string Abbreviate(string s) =>
             s.Substring(0, 2).ToLower();
-
-        public static decimal AverageEarningsOfRichestQuartile(List<Person> population) =>
-            population
-                .OrderByDescending(p => p.Earnings)
-                .Take(population.Count() / 4)
-                .Select(p => p.Earnings)
-                .Average();
     }
 
 
