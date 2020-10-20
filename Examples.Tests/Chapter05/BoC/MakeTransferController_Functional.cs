@@ -14,9 +14,12 @@ namespace Examples.Tests.Chapter05.BoC
 
         public void MakeTransfer([FromBody] MakeTransfer transfer) =>
             Some(transfer)
+                .Map(Normalize)
                 .Where(validator.IsValid)
                 .ForEach(Book);
 
         void Book(MakeTransfer transfer) => throw new NotImplementedException();
+
+        MakeTransfer Normalize(MakeTransfer transfer) => transfer;
     }
 }
