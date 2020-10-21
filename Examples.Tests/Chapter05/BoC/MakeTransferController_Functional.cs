@@ -12,13 +12,24 @@ namespace Examples.Tests.Chapter05.BoC.Functional
     {
         IValidator<MakeTransfer> validator;
 
+        IRepository<Account> accounts;
+
+        ISwiftService swift;
+
         public void MakeTransfer([FromBody] MakeTransfer transfer) =>
             Some(transfer)
                 .Map(Normalize)
                 .Where(validator.IsValid)
                 .ForEach(Book);
 
-        void Book(MakeTransfer transfer) => throw new NotImplementedException();
+        void Book(MakeTransfer transfer) =>
+            accounts.Get(transfer.DebitedAccountId)
+                .Bind(account => account.Debit(transfer.Amount))
+                .ForEach(account =>
+                {
+                    accounts.Save(transfer.DebitedAccountId, account);
+                    swift.Wire(transfer, account);
+                });
 
         MakeTransfer Normalize(MakeTransfer transfer) => transfer;
     }
@@ -43,5 +54,17 @@ namespace Examples.Tests.Chapter05.BoC.Functional
             (account.Balance < amount)
                 ? None
                 : Some(new Account(account.Balance - amount));
+    }
+
+    public interface IRepository<T>
+    {
+        Option<T> Get(Guid id);
+
+        void Save(Guid id, T T);
+    }
+
+    public interface ISwiftService
+    {
+        void Wire(MakeTransfer transfer, Account account);
     }
 }
