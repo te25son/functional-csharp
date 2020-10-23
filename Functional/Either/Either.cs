@@ -1,5 +1,9 @@
-﻿namespace Functional
+﻿using System;
+
+namespace Functional
 {
+    using Unit = System.ValueTuple;
+
     public static partial class F
     {
         public static Left<L> Left<L>(L l) => new Left<L>(l);
@@ -33,5 +37,11 @@
 
         public static implicit operator Either<L, R>(Left<L> left) => new Either<L, R>(left.Value);
         public static implicit operator Either<L, R>(Right<R> right) => new Either<L, R>(right.Value);
+
+        public TR Match<TR>(Func<L, TR> l, Func<R, TR> r) =>
+            IsLeft ? l(Left) : r(Right);
+
+        public Unit Match(Action<L> l, Action<R> r) =>
+            Match(l.ToFunc(), r.ToFunc());
     }
 }
