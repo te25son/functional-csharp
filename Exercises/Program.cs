@@ -13,10 +13,11 @@ namespace Exercises
                 ["BmiCalc"] = Chapter02.BmiCalculator.BmiCalculator.Run,
                 ["EnumExr"] = Chapter03.EnumExercise.Run,
                 ["Lookup"] = Chapter03.LookupExercise.Run,
-                ["EmailExr"] = Chapter03.EmailExample.Run
+                ["EmailExr"] = Chapter03.EmailExample.Run,
+                ["Compose"] = Chapter05.Exercises.Run
             };
 
-            foreach (var exercise in exercises.Where(e => e.Key.Equals("EmailExr")))
+            foreach (var exercise in exercises.Where(e => e.Key.Equals("Compose")))
             {
                 exercise.Value();
             }
