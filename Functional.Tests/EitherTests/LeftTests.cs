@@ -5,19 +5,8 @@ namespace Functional.Tests
 {
     using static F;
 
-    public sealed class EitherTests : TestFixture
+    public sealed class LeftTests : TestFixture
     {
-        [TestCase(12, ExpectedResult = "Right(12)")]
-        [TestCase("hello", ExpectedResult = "Right(hello)")]
-        [TestCase(true, ExpectedResult = "Right(True)")]
-        public string RightCanBeConvertedToString(object value)
-        {
-            return Test(
-                _ => Right(value),
-                right => right.ToString()
-            );
-        }
-
         [TestCase(12, ExpectedResult = "Left(12)")]
         [TestCase("hello", ExpectedResult = "Left(hello)")]
         [TestCase(true, ExpectedResult = "Left(True)")]
