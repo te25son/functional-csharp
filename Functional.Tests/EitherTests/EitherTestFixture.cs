@@ -9,8 +9,8 @@ namespace Functional.Tests
     {
         public string Render(Either<string, double> val) =>
             val.Match(
-                l: l => $"Invalid value: {l}",
-                r: r => $"The result is: {r}");
+                left: l => $"Invalid value: {l}",
+                right: r => $"The result is: {r}");
 
         public  Either<string, double> Calc(double x, double y)
         {

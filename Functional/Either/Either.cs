@@ -38,11 +38,11 @@ namespace Functional
         public static implicit operator Either<L, R>(Left<L> left) => new Either<L, R>(left.Value);
         public static implicit operator Either<L, R>(Right<R> right) => new Either<L, R>(right.Value);
 
-        public TR Match<TR>(Func<L, TR> l, Func<R, TR> r) =>
-            IsLeft ? l(Left) : r(Right);
+        public TR Match<TR>(Func<L, TR> left, Func<R, TR> right) =>
+            IsLeft ? left(Left) : right(Right);
 
-        public Unit Match(Action<L> l, Action<R> r) =>
-            Match(l.ToFunc(), r.ToFunc());
+        public Unit Match(Action<L> left, Action<R> right) =>
+            Match(left.ToFunc(), right.ToFunc());
 
         public override string ToString() =>
             Match(
