@@ -43,5 +43,10 @@ namespace Functional
 
         public Unit Match(Action<L> l, Action<R> r) =>
             Match(l.ToFunc(), r.ToFunc());
+
+        public override string ToString() =>
+            Match(
+                l => $"Left({l})",
+                r => $"Right({r})");
     }
 }
