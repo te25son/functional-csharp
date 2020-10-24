@@ -26,13 +26,13 @@ namespace Exercises.Chapter03
             var shouldBeNone = Enum.Parse<DayOfWeek>("Freeday");
 
             shouldBeSome.Match(
-                () => { WriteLine("FAIL: should be Some"); return Unit(); }, 
-                (weekday) => { WriteLine($"PASS: the weekday is {weekday}"); return Unit(); }
+                () => { WriteLine("FAIL: should be Some"); return Unit.Value; }, 
+                (weekday) => { WriteLine($"PASS: the weekday is {weekday}"); return Unit.Value; }
             );
 
             shouldBeNone.Match(
-                () => { WriteLine("PASS: value is None"); return Unit(); },
-                (weekday) => { WriteLine($"FAIL: the weekday is {weekday}"); return Unit(); }
+                () => { WriteLine("PASS: value is None"); return Unit.Value; },
+                (weekday) => { WriteLine($"FAIL: the weekday is {weekday}"); return Unit.Value; }
             );
         }
     }

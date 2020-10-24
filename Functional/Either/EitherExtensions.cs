@@ -3,7 +3,6 @@
 namespace Functional.Either
 {
     using static F;
-    using Unit = ValueTuple;
 
     public static class EitherExtensions
     {

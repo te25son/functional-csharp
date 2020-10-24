@@ -5,8 +5,6 @@ using System.Linq;
 
 namespace Examples.Tests.Chapter01
 {
-    using static F;
-
     class MutationTests : TestFixture
     {
         [Test]
@@ -31,7 +29,7 @@ namespace Examples.Tests.Chapter01
                 act: arrangeResult =>
                 {
                     arrangeResult.Sort();
-                    return Unit();
+                    return Unit.Value;
                 },
                 assert: (arrangeResult, _) => Assert.AreEqual(new[] { 1, 5, 7 }, arrangeResult)
             );

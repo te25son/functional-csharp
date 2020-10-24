@@ -6,7 +6,6 @@ using System.Linq;
 namespace Functional
 {
     using static F;
-    using Unit = ValueTuple;
 
     public static class CoreOption
     {

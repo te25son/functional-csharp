@@ -3,9 +3,6 @@ using System;
 
 namespace Examples.Tests
 {
-    using Unit = ValueTuple;
-    using static F;
-
     public class TestFixture
     {
         /// <summary>
@@ -17,7 +14,7 @@ namespace Examples.Tests
             Func<TArrangeResult, TActResult> act,
             Action<TArrangeResult, TActResult> assert)
         {
-            var arrangeResult = arrange(Unit());
+            var arrangeResult = arrange(Unit.Value);
             assert(arrangeResult, act(arrangeResult));
         }
 
@@ -29,7 +26,7 @@ namespace Examples.Tests
             Func<TArrangeResult, TActResult> act,
             Action<TActResult> assert)
         {
-            assert(act(arrange(Unit())));
+            assert(act(arrange(Unit.Value)));
         }
 
         /// <summary>
@@ -40,7 +37,7 @@ namespace Examples.Tests
             Func<Unit, TArrangeResult> arrange,
             Func<TArrangeResult, TActResult> act)
         {
-            return act(arrange(Unit()));
+            return act(arrange(Unit.Value));
         }
     }
 }

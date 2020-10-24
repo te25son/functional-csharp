@@ -2,8 +2,6 @@
 
 namespace Functional
 {
-    using Unit = System.ValueTuple;
-
     public static partial class F
     {
         public static Left<L> Left<L>(L l) => new Left<L>(l);
