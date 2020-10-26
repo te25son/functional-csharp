@@ -6,7 +6,12 @@ namespace Examples.Chapter06
 {
     class MakeAMeal 
     {
-        Func<Either<Reason, Unit>> WakeUpEarly;
+        public Either<Reason, Unit> WakeUpEarly(Alarm alarm)
+        {
+            if (alarm.IsSet) return Unit.Value;
+            else return new Reason("Didn't wake up early; alarm wasn't set.");
+        }
+
         Func<Unit, Either<Reason, Ingredients>> ShopForIngredients;
         Func<Ingredients, Either<Reason, Food>> CookRecipe;
 
@@ -16,7 +21,9 @@ namespace Examples.Chapter06
 
         void Run()
         {
-            WakeUpEarly()
+            var alarm = new Alarm(isSet: true);
+
+            WakeUpEarly(alarm)
                 .Bind(ShopForIngredients)
                 .Bind(CookRecipe)
                 .Match(
@@ -30,8 +37,25 @@ namespace Examples.Chapter06
         }
     }
 
+    public class Alarm
+    {
+        public bool IsSet { get; set; }
+
+        public Alarm(bool isSet)
+        {
+            IsSet = isSet;
+        }
+    }
+
+
     class Reason 
     {
+        private string Explanation { get; set; }
+
+        public Reason(string explanation)
+        {
+            Explanation = explanation;
+        }
     }
 
     class Ingredients 
