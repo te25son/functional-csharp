@@ -8,7 +8,7 @@ namespace Examples.Chapter02.Banking
     {
     }
 
-    public sealed class MakeTransfer : Command
+    public class MakeTransfer : Command
     {
         public Guid DebitedAccountId { get; set; }
 
