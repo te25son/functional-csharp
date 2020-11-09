@@ -2,7 +2,7 @@
 using Functional.Either;
 using System;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Examples.Chapter06.BoC
 {
