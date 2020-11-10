@@ -11,7 +11,7 @@ namespace Examples.Chapter06.BoC
         public IActionResult GetInstrumentDetails(string ticker) =>
             getInstrumentDetails(ticker)
                 .Match<IActionResult>(
-                    () => NotFound(),
-                    (result) => Ok(result));
+                    none: NotFound,
+                    some: Ok);
     }
 }
