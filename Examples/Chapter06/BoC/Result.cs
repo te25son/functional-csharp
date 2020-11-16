@@ -16,4 +16,12 @@ namespace Examples.Chapter06.BoC
         public ResultDto(T data) { Succeeded = true; Data = data; }
         public ResultDto(Error error) { Error = error; }
     }
+
+    public static class ResultExt
+    {
+        public static ResultDto<T> ToResult<T>(this Either<Error, T> either) =>
+            either.Match(
+                left: error => new ResultDto<T>(error),
+                right: data => new ResultDto<T>(data));
+    }
 }

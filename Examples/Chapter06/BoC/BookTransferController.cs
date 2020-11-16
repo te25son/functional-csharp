@@ -14,6 +14,9 @@ namespace Examples.Chapter06.BoC
 
         Regex bicRegex = new Regex("[A-Z]{11}");
 
+        public ResultDto<Unit> BookTransfer(BookTransfer cmd) =>
+            Handle(cmd).ToResult();
+
         Either<Error, Unit> Handle(BookTransfer cmd) =>
             Right(cmd)
                 .Bind(ValidateBic)
